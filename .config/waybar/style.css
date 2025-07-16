@@ -1,0 +1,330 @@
+/* === ESTILOS GLOBALES === */
+
+* {
+    font-family: Arial, "Symbols Nerd Font";
+    font-size: 13px;
+
+}
+
+/* === ESTILOS PRINCIPALES DE WAYBAR === */
+window#waybar {
+    background-color: transparent;
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    border-radius: 0px;
+}
+
+
+/* === ESTILOS GENERALES PARA MÓDULOS === */
+#clock,
+#battery,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#power-profiles-daemon, /* Incluido aquí para heredar estilos base */ /* #workspaces también tiene estilos más específicos abajo */
+#bluetooth,
+#custom-power,
+#custom-screenrecorder,
+#mediaplayer,
+#backlight {
+    margin: 0 4px;
+    background-color: #4A5859;
+    color: #ffffff;
+    border-radius: 16px; /* Corregido '10' a '10px' para consistencia */
+  
+}
+
+#clockGroup,
+#red,
+#power {
+    margin: 0px 4px;
+    padding: 4px 2px;
+    background-color: #4A5859;
+    border-radius: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+/* === ESTILOS ESPECÍFICOS POR MÓDULO === */
+#workspaces button.active {
+    padding: 0px 8px;
+  
+    background: #4A5859;
+}
+
+#workspaces button {
+    padding: 0px 4px;
+    margin: 2px 2px;
+    border-radius: 16px;
+    color: #ffffff;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+#workspaces button.active:hover {
+    color: #000000;
+    background: #ffffff;
+}
+
+#workspaces button.urgent {
+    background-color: #D64933;
+    color: #000000;
+}
+
+#workspaces button:hover {
+    background-color: #FCFAFA; /* Un color de fondo diferente al global de button:hover */
+    color: #252627;
+    box-shadow: inset 0 0px #4a4c4e; /* Un box-shadow diferente si quieres */
+}
+
+
+
+/* --- Mode --- */
+#mode {
+    background-color: #64727D;
+    box-shadow: inset 0 -3px #ffffff;
+    /* Asumo que quieres que herede padding, color y border-radius del grupo general */
+    /* Si no está en el grupo general, deberías añadir esas propiedades aquí o añadir #mode al grupo */
+}
+
+/* --- Clock --- */
+#clock {
+
+    padding: 0px 10px; /* Anula el padding general */
+    transition: all 0.3s ease-in-out;
+}
+
+#clock:hover {
+    background-color: #ffffff;
+    color: #40403F;
+}
+
+
+
+/* --- Battery --- */
+#battery {
+    padding: 0px 8px; /* Anula el padding general */
+    transition: all 0.3s ease-in-out;
+
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #E0D68A;
+    background-color: #40403F;
+}
+
+#battery.critical:not(.charging) {
+    color: #F58A07;
+}
+
+#battery.critical:not(.charging):hover {
+    background-color: #9E2A2B;
+    color: #252627;
+}
+
+#battery:hover,
+#network:hover,
+#bluetooth:hover,
+#pulseaudio:hover,
+#custom-power:hover,
+#custom-misc-icon:hover,
+#power-profiles-daemon:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* --- Network --- */
+#network {
+    margin: 0 4px;        /* Anula/especifica margen */
+    padding: 0px 12px;     /* Anula el padding general */
+    transition: all 0.3s ease-in-out;
+}
+
+#network.disconnected {
+    background-color: #252627;
+}
+
+
+/* --- Bluetooth --- */
+#bluetooth {
+    padding: 0 15px;     /* Anula el padding general */
+    margin: 0 4px;      /* Anula/especifica margen */
+    transition: all 0.3s ease-in-out;
+}
+
+#bluetooth.disabled {
+    background-color: #40403F;
+}
+
+#bluetooth.disabled:hover {
+    background-color: #252627;
+    color: #ffffff;
+}
+
+
+/* --- Pulseaudio --- */
+#pulseaudio {
+    margin: 0 4px;      /* Anula/especifica margen */
+    padding: 0px 12px;  /* Anula el padding general */
+    transition: all 0.3s ease-in-out;
+}
+
+#pulseaudio.muted {
+    background-color: #40403F;
+}
+
+
+
+#custom-background-apps{
+    color: #88CCF1;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+
+/* --- Custom Power (botón de apagado/logout, etc.) --- */
+#custom-power {
+    padding: 0 12px;    /* Anula el padding general */
+    font-size: 19px;
+    transition: all 0.3s ease-in-out;
+ }
+
+
+#custom-misc-icon{
+    padding: 0 12px;    /* Anula el padding general */
+    margin: 7px 2px;
+    border-radius: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* --- Power Profiles Daemon --- */
+#power-profiles-daemon {
+    margin: 7px 12px;
+    padding: 0 10px;    /* Anula el padding general con uno específico */
+    transition: all 0.3s ease-in-out;
+}
+
+#power-profiles-daemon.power-saver {
+    color: #00CC99;
+}
+
+#power-profiles-daemon.balanced {
+    color: #F9A03F; /* Podría heredar, pero es bueno ser explícito para este estado */
+}
+
+#power-profiles-daemon.performance {
+    color: #E0D68A;
+}
+
+#custom-screenrecorder{
+    margin: 7px 0px;
+    padding: 0 10px;    /* Anula el padding general con uno específico */
+    transition: all 0.3s ease-in-out;
+}
+
+#custom-screenrecorder:hover{
+    background-color: #ffffff;
+    color: #252627;
+}
+
+
+
+#mediaplayer {
+    background-color: transparent; /* Fondo ligeramente ajustado */
+    border-style: hidden;
+    border-radius: 10px; /* Bordes un poco más redondeados */
+    padding: 2px 8px; /* Padding general para el grupo */
+    transition: background-color 0.3s ease;
+}
+
+
+#custom-mprev:hover,
+#custom-mplaypause:hover,
+#custom-mnext:hover{
+    background-color: #252627;
+    color: #ffffff;
+}
+
+#custom-mplaypause,
+#custom-mnext,
+#custom-mprev{
+    background-color: #40403F;
+    color: #ffffff;
+    border-radius: 10px;
+    margin: 7px 2px;
+    padding: 0px 8px;
+    transition: background-color 0.3s ease;
+}
+
+
+#custom-logout,
+#custom-reboot,
+#custom-poweroff {
+    padding: 0px 10px; /* Espaciado horizontal */
+    margin: 0px 3px;   /* Margen entre los botones */
+    color: #ffffff;    /* Color de ícono base */
+    font-size: 16px;   /* Tamaño del ícono */
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover para logout */
+#custom-logout:hover {
+    color: #000000; /* Azul */
+    background-color: rgba(129, 162, 190, 0.5);
+}
+
+/* Hover para reboot - un color de advertencia */
+#custom-reboot:hover {
+    color: #000000; /* Amarillo/Naranja */
+    background-color: rgba(240, 198, 116, 0.5);
+}
+
+/* Hover para poweroff - un color más fuerte de advertencia/peligro */
+#custom-poweroff:hover {
+    color: #000000; /* Rojo */
+    background-color: rgba(204, 102, 102, 0.5);
+}
+
+#custom-bg-spotify,
+#custom-bg-steam,
+#custom-bg-discord,
+#custom-bg-stremio-flatpak,
+#custom-bg-zapzap {
+    padding: 0px 5px; /* Espaciado horizontal */
+    margin: 6px 1px;   /* Margen entre los botones */
+    border-radius: 10px;
+    color: #ffffff;    /* Color de ícono base */
+    font-size: 16px;   /* Tamaño del ícono */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+#custom-bg-discord:hover,
+#custom-bg-steam:hover,
+#custom-bg-spotify:hover,
+#custom-bg-stremio-flatpak:hover,
+#custom-bg-zapzap:hover {
+    color: #252627; /* Azul */
+    background-color: #ffffff;
+    border-radius: 18px;
+
+}
+
+
+menu {
+	border-radius: 15px;
+	background: #40403F;
+	color: #81a2be;
+}
+menuitem {
+	border-radius: 15px;
+}

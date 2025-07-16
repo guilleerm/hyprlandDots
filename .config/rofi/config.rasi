@@ -1,0 +1,17 @@
+
+//@theme "/usr/share/rofi/themes/android_notification.rasi"
+
+configuration {
+    show-icons: true;
+}
+//@theme "/usr/share/rofi/themes/Monokai.rasi"
+
+//@theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
+
+//@theme "/home/guille/.local/share/rofi/themes/rounded-nord-dark.rasi"
+
+//@theme "/usr/share/rofi/themes/android_notification.rasi"
+
+//@theme "/home/guille/.local/share/rofi/themes/windows11-grid-dark.rasi"
+
+@theme "/home/guille/.local/share/rofi/themes/rounded-nord-dark.rasi"

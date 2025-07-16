@@ -1,0 +1,372 @@
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    // "width": 1280, // Waybar width
+    "margin-left": 4,
+    "margin-top": 5,
+    "margin-right": 4,
+    "margin-bottom": 0,
+
+    // Choose the order of the modules    border-color: #740864;
+
+    "modules-left": [        
+        "group/clockGroup",
+        //"power-profiles-daemon",
+        //"backlight",
+        "group/misc"
+        //"temperature"
+
+    ],
+    "modules-center": [
+        "hyprland/workspaces",
+        "custom/media"
+        
+        
+        
+    ],
+    "modules-right": [
+
+        "custom/bg-zapzap",
+        "custom/bg-stremio-flatpak",
+        "custom/bg-discord",
+        "custom/bg-steam",
+        //"custom/bg-spotify",
+        "privacy",
+        //"pulseaudio",
+        "group/red",
+        "group/power"
+    ],
+
+
+
+
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C ",
+        "format-critical": "{temperatureC}°C "
+    },
+
+    "group/power":{
+        "orientation": "horizontal",
+        "modules": [
+            "battery",
+            "group/powermenu"
+        ]
+    },
+
+    "group/misc":{
+        "orientation": "horizontal",
+        "tooltip": false,
+        "drawer": { // Opcional: para ocultar/mostrar el grupo
+            "transition-duration": 500,
+            "click-to-reveal": true,
+            "children-class": "mediaplayer-child", // Clase para los módulos hijos
+            "transition-left-to-right": true // O la dirección que prefieras
+        },
+        "modules": [
+            "custom/misc-icon",
+            "power-profiles-daemon",
+            "group/mediaplayer"
+
+
+        ]
+    },
+
+    "custom/misc-icon": {
+        "format": ""
+    
+    },
+
+    "group/red": {
+		"orientation": "horizontal",
+		"modules": [
+            "pulseaudio",
+			"bluetooth",
+			"network"
+		]
+	},
+
+    "battery#bat2": {
+        "bat": "BAT0",
+        "interval": 5,
+        "format": "{power}W",
+        "tooltip": false
+    },
+   
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "interval": 20,
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        //"format-icons": ["", "", "", "", ""]
+        "format-icons": ["󰂎","󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
+    },
+
+    "hyprland/workspaces": {
+        "all-outputs": true,
+        "format": "{name}",
+        "format-icons": {
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+            "10": "十"
+        },
+        "on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
+        "on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
+        "sort-by-number": true,
+        "active-only": false
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "tooltip": false,
+        "format": "{percent}% {icon}",
+        "format-icons": ["", ""]
+    },
+
+
+    "group/clockGroup": {
+        "orientation": "horizontal",
+        "modules": [
+            "clock"
+        ]
+    },
+
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%d-%m-%Y}"
+    },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon}",
+        "format-bluetooth": "{icon}",
+        "format-muted": "",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+
+    "bluetooth": {
+        "format": "󰂯",
+        "format-disabled": "󰂯",
+        "format-connected": "󰂯 {device_battery_percentage}%",
+        "tooltip": false,
+        "on-click": "/home/guille/.config/waybar/scripts/bluetooth.sh --toggle",
+        "on-click-right": "blueberry",
+        "return-type": "json"
+    },
+
+
+    "network": {
+        "format-wifi": "{icon}",
+        "format-ethernet": "",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "󰤯",
+        "tooltip": false,
+        "on-click": "networkmanager_dmenu",
+        "on-click-right": "sudo systemctl restart NetworkManager",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+    },
+
+    "tray": {
+        "format": "{icon}",
+        "tooltip": false,
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+
+    },
+
+    "custom/power": {
+        "format": "󰐥",
+        "tooltip": false
+    },
+
+    "group/powermenu": {
+        "orientation": "horizontal",
+        "drawer": { // Opcional: para ocultar/mostrar el grupo
+            "transition-duration": 500,
+            "children-class": "powermenu-child", // Clase para los módulos hijos
+            "transition-left-to-right": false, // O la direccion que prefieras
+            "click-to-reveal": false
+        },
+        "modules": [
+            "custom/power",
+            "custom/logout",
+            "custom/reboot",
+            "custom/poweroff"
+        ]
+    },
+
+    "custom/logout": {
+        "format": "", // Ícono de logout (Nerd Fonts: nf-fa-sign_out)
+        "tooltip": false,
+        "on-click": "hyprctl dispatch exit"
+    },
+
+    "custom/reboot": {
+        "format": "", // Ícono de reboot (Nerd Fonts: nf-fa-refresh o nf-fa-repeat)
+        "tooltip": false,
+        "on-click": "systemctl reboot"
+    },
+
+    "custom/poweroff": {
+        "format": "", // Ícono de poweroff (Nerd Fonts: nf-fa-power_off)
+        "tooltip": false,
+        "on-click": "systemctl poweroff"
+    },
+
+
+
+
+
+
+    "group/mediaplayer": {
+        "orientation": "horizontal",
+        "modules": [
+            "mpris" ,
+            "custom/mprev",
+            "custom/mplaypause",
+            "custom/mnext"
+        ]
+    },
+
+    "mpris": {
+        "format": " {title}",
+        "format-paused": "▶ {title}", // Usando un ícono de pausa diferente
+        "tooltip-format": "{artist} - {album}\n{title}",
+
+        "status-icons": { // Estos son más bien para el estado general, no tanto para los botones
+            "playing": "▶",
+            "paused": ""
+        },
+        "max-length": 30,
+        "interval": 10
+    },
+
+    "custom/mprev": {
+        "format": "", // Ícono para "anterior" (Nerd Fonts: nf-fa-step_backward)
+        "tooltip": false, // Opcional: "tooltip": "Previous track"
+        "on-click": "playerctl previous"
+    },
+
+    "custom/mplaypause": {
+        "exec": "~/.config/waybar/scripts/mediaplayer_playpause_icon.sh", // ¡Ruta absoluta es más segura! /home/tu_usuario/.config/...
+        "return-type": "json",
+        "interval": 1, // O 2, para probar
+        "on-click": "playerctl play-pause"
+        // Asegúrate de que NO haya una propiedad "format" aquí, ya que "exec" la anula.
+    },
+
+    "custom/mnext": {
+        "format": "", // Ícono para "siguiente" (Nerd Fonts: nf-fa-step_forward)
+        "tooltip": false, // Opcional: "tooltip": "Next track"
+        "on-click": "playerctl next"
+    },
+
+    "privacy": {
+        "icon-spacing": 4,
+        "icon-size": 18,
+        "transition-duration": 250,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            }
+        ]
+    },
+
+    "custom/bg-discord": {
+        "format": "{}", // El script genera el JSON completo
+        "exec": "~/.config/waybar/scripts/check_single_app.sh \"Discord\" \"Discord\" \"\" \"discord\" \"pkill -x Discord\"",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "discord --ozone-platform-hint=auto", // Comando para abrir/enfocar Discord
+        //"on-click-right": "pkill -x Discord", // Comando para cerrar Discord
+        // Alternativa más "amable" para cerrar si la app lo soporta (raro):
+        "on-click-right": "killall -9 Discord"
+
+        // Para Spotify, se puede usar dbus para un cierre más limpio (ver abajo)
+    },
+
+    "custom/bg-steam": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/check_single_app.sh \"Steam\" \"steam\" \"\" \"steam\" \"pkill -x steam\"",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "steam &",
+        "on-click-right": "pkill -x steam"
+        // Para cerrar Steam de forma más completa (incluyendo cliente y juegos si es posible):
+        // "on-click-right": "steam -shutdown || pkill -x steam" (steam -shutdown a veces no es suficiente)
+    },
+
+    "custom/bg-spotify": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/check_single_app.sh \"Spotify\" \"spotify\" \"\" \"spotify\" \"\"", // El comando de cierre se maneja abajo
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "spotify &", // O un comando más inteligente para enfocar si ya está abierto
+        // Spotify responde bien a comandos DBus para cerrar:
+        "on-click-right": "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop; dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.MediaPlayer2.Quit || pkill -x spotify"
+        // La doble llamada a dbus es: primero para, luego cierra. El pkill es un fallback.
+    },
+
+    "custom/bg-stremio-flatpak": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/check_single_app.sh \"Stremio (Flatpak)\" \"stremio\" \"\" \"flatpak run com.stremio.Stremio\" \"flatpak kill com.stremio.Stremio\"",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "flatpak run com.stremio.Stremio &",
+        "on-click-right": "flatpak kill com.stremio.Stremio || pkill -f com.stremio.Stremio"
+    },
+
+    "custom/bg-zapzap": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/check_single_app.sh \"Zapzap\" \"zapzap\" \"\" \"flatpak run com.rtosta.zapzap\" \"flatpak kill com.rtosta.zapzap\"",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "flatpak run com.rtosta.zapzap &",
+        "on-click-right": "flatpak kill com.rtosta.zapzap || pkill -f com.rtosta.zapzap"
+    }
+
+    
+}

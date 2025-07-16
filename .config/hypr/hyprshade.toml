@@ -1,0 +1,5 @@
+[[shades]]
+name = "luz_ambar"
+path = "~/.config/hypr/shaders/luz_ambar.frag" # 
+start_time = 22:30:00
+end_time = 06:30:00  
